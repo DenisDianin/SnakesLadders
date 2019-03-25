@@ -40,5 +40,4 @@
     
     $game = New Game;
     $game->Play(1, rand(1, 6));
-    
 ?>
