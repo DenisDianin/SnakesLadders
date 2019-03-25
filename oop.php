@@ -1,5 +1,4 @@
 <?php
-
     abstract class Game
     {
         protected $roll;
@@ -20,7 +19,7 @@
             elseif (in_array($position + $roll, [25, 55])):
                 $game = new Ladder ($position, $roll, 'Ladder ');
             else:
-                switch (($position + $roll) <=> 100):
+                switch ($position + $roll <=> 100):
                     case -1: $game = new Less100 ($position, $roll, ''); break;
                     case 0: $game = new Less100 ($position, $roll, 'Stop! '); break;
                     case 1: $game = new More100 ($position, $roll, 'Repeat Roll '); break;
@@ -41,6 +40,7 @@
         
         private function NextStep()
         {
+            sleep(1);
             $this->newPosition <> 100 ? Game::Play($this->newPosition, rand(1, 6)) : exit;
         }
     }
@@ -49,7 +49,7 @@
     {
         public function Rules()
         {
-            $this->newPosition = ($this->position + $this->roll) - 3;
+            $this->newPosition = $this->position + $this->roll - 3;
         }
     }
     
@@ -57,7 +57,7 @@
     {
         public function Rules()
         {
-            $this->newPosition = ($this->position + $this->roll) + 10;
+            $this->newPosition = $this->position + $this->roll + 10;
         }
     }
     
